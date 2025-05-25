@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -S grub sudo vim networkmanager --noconfirm
+pacman -S grub doas vim networkmanager --noconfirm
 
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
@@ -26,4 +26,4 @@ echo "bahaa:b" | chpasswd
 
 systemctl enable NetworkManager
 
-sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+echo "permit nopass bahaa as root" > /etc/doas.conf
